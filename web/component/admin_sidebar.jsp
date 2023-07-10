@@ -6,10 +6,6 @@
                     <div class="sb-nav-link-icon"><i class="fa fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-                <a class="nav-link" href="admin-user">
-                    <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
-                    Users
-                </a>
                 <a class="nav-link" href="admin-product">
                     <div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>
                     Products

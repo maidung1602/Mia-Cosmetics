@@ -66,7 +66,7 @@
     </servlet>
     <servlet>
         <servlet-name>AdminUserServlet</servlet-name>
-        <servlet-class>controller.Admin.AdminUserServlet</servlet-class>
+        <servlet-class>controller.AdminUserServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddUserServlet</servlet-name>
@@ -91,6 +91,14 @@
     <servlet>
         <servlet-name>AdminBrandServlet</servlet-name>
         <servlet-class>controller.Admin.AdminBrandServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>controller.CartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <servlet-class>controller.CheckoutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
@@ -175,6 +183,14 @@
     <servlet-mapping>
         <servlet-name>AdminBrandServlet</servlet-name>
         <url-pattern>/admin-brand</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

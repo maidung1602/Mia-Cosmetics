@@ -39,7 +39,6 @@ public class ProductDAO extends DBContext {
             "order by discount asc";
         DAO d = new DAO();
         try {
-            System.out.println(sql);
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -219,6 +218,7 @@ public class ProductDAO extends DBContext {
         return list.subList(start, end);
     }
 
+    
     
     
 }

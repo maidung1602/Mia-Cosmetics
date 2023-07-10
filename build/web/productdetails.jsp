@@ -52,6 +52,8 @@
                                     </div>
                                     <!-- Modal view content -->
                                     <div class="col-md-7 col-sm-7 col-xs-12">
+                                        <form action="cart" method="post">
+                                           <input type="hidden" name="action" value="add"/> 
                                         <div class="aa-product-view-content">
                                             <h3>${product.name}</h3>
                                             <p>${product.description}</p>
@@ -63,9 +65,12 @@
                                                     <h3 id="sale-price-tag" style="color: #db0416; font-weight: 700;margin-top: 10px">${salePriceTag}</h3>
                                                 </div>
                                                 <c:set var="productModels" value="${product.getProductModel()}"/>
+                                                <c:if test="${productModels.size()==1}">
+                                                    <input name="model_id" type="hidden" value="${productModels.get(0).getId()}"/>
+                                                </c:if>
                                                 <c:if test="${productModels.size()>1}">
                                                     <div class="aa-prod-quantity">
-                                                        Phân loại:  <select name="productmodel" 
+                                                        Phân loại:  <select name="model_id" id="model_id"
                                                                             style="width: 180px"
                                                                             onchange="changePriceTags(this.value)">
                                                             <option value="0">Tùy chọn</option>
@@ -79,14 +84,16 @@
                                                             <input type="hidden" id="origin-price-${s.id}" value="${s.origin_price}"/>
                                                             <input type="hidden" id="sale-price-${s.id}" value="${s.sale_price}"/>
                                                         </c:forEach>
+                                                            <p style="display: none" id="noti">Chưa chọn phân loại</p>
                                                     </div>
                                                 </c:if>
                                                 <div class="">
-                                                    Số lượng: <input type="number" value="1" id="quantity" style="width:40px">
+                                                    Số lượng: <input type="number" value="1" min="1" name="quantity" style="width:40px">
                                                 </div>
-                                                <a class="aa-add-to-cart-btn" href="#">Add To Cart</a>
+                                                    <button class="aa-add-to-cart-btn" style="background-color: pink" onclick="submitForm(${product.id})">Add To Cart</button>
                                             </div>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +110,7 @@
                                                     <p style="padding: 0 12px">${s.name}</p>
                                                     <h3 style="color: #db0416; font-weight: 700;">${s.getSalePriceTag()}</h3>
                                                     <h4 style="color: #828282"><del>${s.getOriginPriceTag()}</del></h4> 
-                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                    <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -123,14 +130,24 @@
         <script src="js/jquery.prettyPhoto.js"></script>
         <script src="js/main.js"></script>
         <script>
-                                            function changePriceTags(index) {
-                                                index = +index;
+                function changePriceTags(index) {
+                    index = +index;
 
-                                                let originPrice = document.getElementById('origin-price-' + index).value + (index === 0? '':'.000');
-                                                let salePrice = document.getElementById('sale-price-' + index).value + (index === 0? '':'.000');
-                                                document.getElementById('origin-price-tag').innerHTML = '<del>' + originPrice + '</del>';
-                                                document.getElementById('sale-price-tag').innerHTML = salePrice;
-                                            }
+                    let originPrice = document.getElementById('origin-price-' + index).value + (index === 0? '':'.000');
+                    let salePrice = document.getElementById('sale-price-' + index).value + (index === 0? '':'.000');
+                    document.getElementById('origin-price-tag').innerHTML = '<del>' + originPrice + '</del>';
+                    document.getElementById('sale-price-tag').innerHTML = salePrice;
+                }
+                function submitForm(index) {
+                    let model = document.getElementById('model_id').value;
+                    if(model === '0'){
+                        document.getElementById('noti').style.display="block";
+                    } else{
+                        document.getElementById('noti').style.display="none";
+                        this.form.submit();
+                    }    
+                }
+                 
         </script>
     </body>
 </html>

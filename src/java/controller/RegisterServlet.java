@@ -60,11 +60,11 @@ public class RegisterServlet extends HttpServlet {
         } else if (b!=null){
             request.setAttribute("err", "Username đã tồn tại");
         } else if (password.equals(repassword) && b==null){
-            int id = d.getLastUserId()+1;
-            User newUser= new User(id, name, username, password, email, phone, null, false);
+            User newUser= new User(0, name, username, password, email, phone, null, 1);
             d.insert(newUser);
+            User newa = d.checkAccount(username, password);
             HttpSession session=request.getSession();
-            session.setAttribute("account", newUser);
+            session.setAttribute("account", newa);
             response.sendRedirect("home");
         } 
         

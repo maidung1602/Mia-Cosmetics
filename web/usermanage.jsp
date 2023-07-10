@@ -23,29 +23,41 @@
                 text-decoration: none;
                 color: black !important;
             }
-            
+
             th:last-child .datatable-sorter::before  {
                 display: none;
-              }
+            }
 
             th:last-child .datatable-sorter::after {
                 display: none;
-              }
+            }
             th:first-child {
-                  width: 6%;
-              }
-              th:last-child {
-                  width:14%;
-              }
-              td:last-child {
-                  text-align: center;
-              }
+                width: 6%;
+            }
+            th:last-child {
+                width:14%;
+            }
+            td:last-child {
+                text-align: center;
+            }
         </style>
     </head>
     <body class="sb-nav-fixed">
         <%@include file="component/admin_header.jsp" %>
         <div id="layoutSidenav">
-            <%@include file="component/admin_sidebar.jsp" %>
+            <div id="layoutSidenav_nav" >
+                <nav class="sb-sidenav accordion sb-sidenav-dark" style="background-color: #ffabb2 !important" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <a class="nav-link" href="admin-user">
+                                <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
+                                Users
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
@@ -72,18 +84,22 @@
                                     </thead>
                                     <tbody>
                                         <c:forEach items="${users}" var="u">
-                                        <tr>
-                                            <td>${u.id}</td>
-                                            <td>${u.name}</td>
-                                            <td>${u.username}</td>
-                                            <td>${u.email}</td>
-                                            <td>${u.phone}</td>
-                                            <td>${u.is_admin?'admin':'customer'}</td>
-                                            <td>
-                                                <a href=""><button type="button" class="btn" style="background-color: #fa8a93; color: white;">Edit</button></a>
-                                                <a href=""><button type="button" class="btn" style="background-color: #fa8a93cb; color: white;">Delete</button></a>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>${u.id}</td>
+                                                <td>${u.name}</td>
+                                                <td>${u.username}</td>
+                                                <td>${u.email}</td>
+                                                <td>${u.phone}</td>
+                                                <td>
+                                                    <c:if test="${u.is_admin==3}">Admin</c:if>
+                                                    <c:if test="${u.is_admin==2}">Seller</c:if>
+                                                    <c:if test="${u.is_admin==1}">Customer</c:if>
+                                                </td>
+                                                <td>
+                                                    <a href=""><button type="button" class="btn" style="background-color: #fa8a93; color: white;">Edit</button></a>
+                                                    <a href=""><button type="button" class="btn" style="background-color: #fa8a93cb; color: white;">Delete</button></a>
+                                                </td>
+                                            </tr>
                                         </c:forEach>
                                     </tbody>
                                 </table>

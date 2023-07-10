@@ -18,7 +18,7 @@
                     <div class="pull-right">
                         <ul class="nav navbar-nav">
                             <!--<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>-->
-                            <li class="head-menu"><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
+                            <li class="head-menu"><a href="cart"><i class="fa fa-shopping-cart"></i></a></li>
                             <li class="head-menu">
                                 <c:if test="${sessionScope.account==null}">
                                     <a href="login"><i class="fa fa-user"></i> </a>

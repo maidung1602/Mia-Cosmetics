@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.Admin;
+package controller;
 
 import dal.UserDAO;
 import java.io.IOException;
@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.User;
 
@@ -32,7 +33,9 @@ public class AdminUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         UserDAO udb = new UserDAO();
-        List<User> users = udb.getAllUser();
+        HttpSession session=request.getSession();
+        User a = (User) session.getAttribute("account");
+        List<User> users = udb.getAllUser(a.getId());
         request.setAttribute("users", users);
         request.getRequestDispatcher("usermanage.jsp").forward(request, response);    
     } 

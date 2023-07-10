@@ -66,7 +66,7 @@
                                             </div>
                                         </div>
                                     </c:forEach>
-                                    <a class="cate" style="text-decoration: none; color: black; background-color: #eee" href="#"><div  style="padding-top: 32px; ">+ Add new</div></a>      
+                                    <a class="cate" style="text-decoration: none; color: black; background-color: #eee" ><div  style="padding-top: 32px; ">+ Add new</div></a>      
                                 </div>
                             </div>
                         </div>

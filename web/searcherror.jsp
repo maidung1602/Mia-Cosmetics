@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +13,7 @@
     </head>
     <body>
         <%@include file="component/header.jsp" %>
-        <h2 style="text-align: center; padding: 40px 0 60px;">Không có sản phẩm phù hợp</h2>
+        <h2 style="text-align: center; padding: 80px 0 120px;">Không có sản phẩm phù hợp</h2>
         <%@include file="component/footer.jsp" %>
     </body>
 </html>

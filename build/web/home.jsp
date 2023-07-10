@@ -81,7 +81,7 @@
                                                             <p style="padding: 0 12px">${s.name}</p>
                                                             <h3 style="color: #db0416; font-weight: 700;">${s.getSalePriceTag()}</h3>
                                                             <h4 style="color: #828282"><del>${s.getOriginPriceTag()}</del></h4> 
-                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                            <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -99,7 +99,7 @@
                                                             <p style="padding: 0 12px">${s.name}</p>
                                                             <h3 style="color: #db0416; font-weight: 700;">${s.getSalePriceTag()}</h3>
                                                             <h4 style="color: #828282"><del>${s.getOriginPriceTag()}</del></h4>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                            <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -117,7 +117,7 @@
                                                             <p style="padding: 0 12px">${s.name}</p>
                                                             <h3 style="color: #db0416; font-weight: 700;">${s.getSalePriceTag()}</h3>
                                                             <h4 style="color: #828282"><del>${s.getOriginPriceTag()}</del></h4>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                            <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -146,7 +146,7 @@
                                                 <p style="padding: 0 12px">${s.name}</p>
                                                 <h3 style="color: #db0416; font-weight: 700;">${s.getSalePriceTag()}</h3>
                                                 <h4 style="color: #828282"><del>${s.getOriginPriceTag()}</del></h4>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                             </div>
                                         </div>
                                     </div>
@@ -169,7 +169,7 @@
                                                             <p style="padding: 0 12px">${s.name}</p>
                                                             <h3 style="color: #db0416; font-weight: 700;">${s.getSalePriceTag()}</h3>
                                                             <h4 style="color: #828282"><del>${s.getOriginPriceTag()}</del></h4>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                            <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -195,7 +195,7 @@
                                                             <p style="padding: 0 12px">${s.name}</p>
                                                             <h3 style="color: #db0416; font-weight: 700;">${s.getSalePriceTag()}</h3>
                                                             <h4 style="color: #828282"><del>${s.getOriginPriceTag()}</del></h4>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                            <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -213,7 +213,7 @@
                                                             <p style="padding: 0 12px">${s.name}</p>
                                                             <h3 style="color: #db0416; font-weight: 700;">${s.getSalePriceTag()}</h3>
                                                             <h4 style="color: #828282"><del>${s.getOriginPriceTag()}</del></h4>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                            <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -231,7 +231,7 @@
                                                             <p style="padding: 0 12px">${s.name}</p>
                                                             <h3 style="color: #db0416; font-weight: 700;">${s.getSalePriceTag()}</h3>
                                                             <h4 style="color: #828282"><del>${s.getOriginPriceTag()}</del></h4>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                            <a  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                         </div>
                                                     </div>
                                                 </div>

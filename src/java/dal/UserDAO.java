@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Product;
 import model.User;
 
 /**
@@ -26,7 +27,7 @@ public class UserDAO extends DBContext {
             ResultSet rs=st.executeQuery();
             if(rs.next()){
                 return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), 
-                        rs.getString(6), rs.getString(7), rs.getBoolean(8));
+                        rs.getString(6), rs.getString(7), rs.getInt(8));
             }
         }catch(SQLException e){
         }
@@ -97,21 +98,23 @@ public class UserDAO extends DBContext {
             st.setString(4, a.getEmail());
             st.setString(5, a.getPhone());
             st.setString(6, a.getAvatar());
-            st.setBoolean(7, a.isIs_admin());
+            st.setInt(7, a.getIs_admin());
             st.executeUpdate();
         } catch (SQLException e) {
         }
     }
     
-    public List<User> getAllUser() {
+    public List<User> getAllUser(int id) {
         List<User> list = new ArrayList<>();
-        String sql = "select * from [User]";
+        String sql = "select * from [User]\n" +
+            "where id not in (?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), 
-                        rs.getString(6), rs.getString(7), rs.getBoolean(8)));
+                        rs.getString(6), rs.getString(7), rs.getInt(8)));
             }
         } catch (SQLException e) {
         }
@@ -120,12 +123,5 @@ public class UserDAO extends DBContext {
     
     
     
-    public static void main(String[] args) {
-//        UserDAO d=new UserDAO();
-//        User newUser= new User(d.getLastUserId()+1, "Hoang Mai Dung", "maidun", "123", "hanoi", "0123456798", null, false);
-//        d.insert(newUser);
-//        User b = d.checkAccount("maidun", "123");
-//        System.out.println(b);
-    }
     
 }

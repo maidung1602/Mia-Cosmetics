@@ -147,11 +147,12 @@ public class Product extends DBContext {
         List<Product> list = new ArrayList<>();
         String sql = "select top 4 *\n" +
             "from Product\n" +
-            "where subcategory_id=?";
+            "where subcategory_id=? and id not in (?)";
         DAO d = new DAO();
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, this.subcategory.getId());
+            ps.setInt(2, this.id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Product(rs.getInt(1),rs.getString(2),rs.getString(3), d.getBrandById(rs.getInt(4)), d.getSubcategoryById(rs.getInt(5)),rs.getString(6)));

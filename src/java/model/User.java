@@ -16,12 +16,12 @@ public class User {
     private String email;
     private String phone;
     private String avatar;
-    private boolean is_admin;
+    private int is_admin;
 
     public User() {
     }
 
-    public User(int id, String name, String username, String password, String email, String phone, String avatar, boolean is_admin) {
+    public User(int id, String name, String username, String password, String email, String phone, String avatar, int is_admin) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -88,11 +88,11 @@ public class User {
         this.avatar = avatar;
     }
 
-    public boolean isIs_admin() {
+    public int getIs_admin() {
         return is_admin;
     }
 
-    public void setIs_admin(boolean is_admin) {
+    public void setIs_admin(int is_admin) {
         this.is_admin = is_admin;
     }
 

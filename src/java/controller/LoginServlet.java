@@ -73,9 +73,11 @@ public class LoginServlet extends HttpServlet {
             //tao session
             HttpSession session=request.getSession();
             session.setAttribute("account", a);
-            if(a.isIs_admin())
+            if(a.getIs_admin()==3)
+                response.sendRedirect("admin-user");
+            else if (a.getIs_admin()==2)
                 response.sendRedirect("admin");
-            else
+            else 
                 response.sendRedirect("home");
         }
     }
