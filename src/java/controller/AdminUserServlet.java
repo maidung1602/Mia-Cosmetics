@@ -35,9 +35,13 @@ public class AdminUserServlet extends HttpServlet {
         UserDAO udb = new UserDAO();
         HttpSession session=request.getSession();
         User a = (User) session.getAttribute("account");
+        if (a.getIs_admin()!=3){
+            response.sendRedirect("login");
+        } else {
         List<User> users = udb.getAllUser(a.getId());
         request.setAttribute("users", users);
         request.getRequestDispatcher("usermanage.jsp").forward(request, response);    
+        }
     } 
 
     /** 

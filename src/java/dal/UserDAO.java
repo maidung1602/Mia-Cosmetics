@@ -9,7 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Product;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.User;
 
 /**
@@ -30,6 +31,7 @@ public class UserDAO extends DBContext {
                         rs.getString(6), rs.getString(7), rs.getInt(8));
             }
         }catch(SQLException e){
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         return null;
     }
@@ -121,7 +123,54 @@ public class UserDAO extends DBContext {
         return list;
     }
     
+    public int getIsAdmin(String id){
+        String sql="select is_admin\n" +
+            "from [User]\n" +
+            "where id=?";
+        try{
+            PreparedStatement st=connection.prepareStatement(sql);
+            st.setString(1, id);
+            ResultSet rs=st.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+        }catch(SQLException e){
+        }
+        return 0;
+    }
     
+    
+    public void disable(String id) {
+        String sql = "UPDATE [dbo].[User]\n" +
+                "   SET [is_admin] = ?\n" +
+                " WHERE id=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, getIsAdmin(id)-4);
+            st.setString(2, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+    
+    public void enable(String id) {
+        String sql = "UPDATE [dbo].[User]\n" +
+                "   SET [is_admin] = ?\n" +
+                " WHERE id=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, getIsAdmin(id)+4);
+            st.setString(2, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+    
+    
+    public static void main(String[] args) {
+//        UserDAO d = new  UserDAO();
+//        d.enable("1");
+    }
     
     
 }

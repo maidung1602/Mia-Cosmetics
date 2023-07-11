@@ -50,10 +50,6 @@ public class ProductModelDAO extends DBContext {
         }
     }
     
-     public static void main(String[] args) {
-        ProductModelDAO d = new  ProductModelDAO();
-        d.updateQuantity("1", 40);
-    }
-    
+     
     
 }

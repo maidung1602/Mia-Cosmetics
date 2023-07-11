@@ -12,7 +12,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.User;
+import ulti.MD5Hash;
 
 /**
  *
@@ -60,12 +64,19 @@ public class RegisterServlet extends HttpServlet {
         } else if (b!=null){
             request.setAttribute("err", "Username đã tồn tại");
         } else if (password.equals(repassword) && b==null){
-            User newUser= new User(0, name, username, password, email, phone, null, 1);
-            d.insert(newUser);
-            User newa = d.checkAccount(username, password);
-            HttpSession session=request.getSession();
-            session.setAttribute("account", newa);
-            response.sendRedirect("home");
+            User newUser;
+            try {
+                newUser = new User(0, name, username, MD5Hash.hash(password), email, phone, null, 1);
+                System.out.println(newUser);
+                d.insert(newUser);
+                User newa = d.checkAccount(username, MD5Hash.hash(password));
+                HttpSession session=request.getSession();
+                session.setAttribute("account", newa);
+                response.sendRedirect("home");
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
         } 
         
         request.setAttribute("name", name);

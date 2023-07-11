@@ -13,7 +13,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.User;
+import ulti.MD5Hash;
 
 /**
  *
@@ -64,21 +68,25 @@ public class LoginServlet extends HttpServlet {
         response.addCookie(cp);
         response.addCookie(cr);
         UserDAO d=new UserDAO();
-        User a=d.checkAccount(u, p);
-        System.out.println(a);
-        if(a==null){
-            request.setAttribute("error", "Thông tin đăng nhập không chính xác");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }else{
-            //tao session
-            HttpSession session=request.getSession();
-            session.setAttribute("account", a);
-            if(a.getIs_admin()==3)
-                response.sendRedirect("admin-user");
-            else if (a.getIs_admin()==2)
-                response.sendRedirect("admin");
-            else 
-                response.sendRedirect("home");
+        try {
+            User a=d.checkAccount(u, MD5Hash.hash(p));
+            System.out.println(a);
+            if(a==null){
+                request.setAttribute("error", "Thông tin đăng nhập không chính xác");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }else{
+                //tao session
+                HttpSession session=request.getSession();
+                session.setAttribute("account", a);
+                if(a.getIs_admin()==3)
+                    response.sendRedirect("admin-user");
+                else if (a.getIs_admin()==2)
+                    response.sendRedirect("admin");
+                else 
+                    response.sendRedirect("home");
+            }
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

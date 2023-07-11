@@ -70,11 +70,7 @@
     </servlet>
     <servlet>
         <servlet-name>AddUserServlet</servlet-name>
-        <servlet-class>controller.Admin.AddUserServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EditUserServlet</servlet-name>
-        <servlet-class>controller.Admin.EditUserServlet</servlet-class>
+        <servlet-class>controller.AddUserServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminProduct</servlet-name>
@@ -99,6 +95,10 @@
     <servlet>
         <servlet-name>CheckoutServlet</servlet-name>
         <servlet-class>controller.CheckoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>disableUser</servlet-name>
+        <servlet-class>controller.DisableUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
@@ -165,10 +165,6 @@
         <url-pattern>/add-user</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditUserServlet</servlet-name>
-        <url-pattern>/edit-user</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>AdminProduct</servlet-name>
         <url-pattern>/admin-product</url-pattern>
     </servlet-mapping>
@@ -191,6 +187,10 @@
     <servlet-mapping>
         <servlet-name>CheckoutServlet</servlet-name>
         <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>disableUser</servlet-name>
+        <url-pattern>/disable</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

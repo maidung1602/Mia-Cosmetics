@@ -35,7 +35,7 @@
                 width: 6%;
             }
             th:last-child {
-                width:14%;
+                width:10%;
             }
             td:last-child {
                 text-align: center;
@@ -69,7 +69,7 @@
                             </div>
                             <div class="card-body">
                                 <button type="button" class="btn" style="float:right; background-color: #eee; margin-left: 20px;" 
-                                        data-mdb-ripple-color="dark">Add new</button>
+                                        data-mdb-ripple-color="dark" onclick="window.location.href='add-user'">Add new</button>
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
@@ -79,7 +79,7 @@
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Role</th>
-                                            <th>Action</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -96,9 +96,18 @@
                                                     <c:if test="${u.is_admin==1}">Customer</c:if>
                                                 </td>
                                                 <td>
-                                                    <a href=""><button type="button" class="btn" style="background-color: #fa8a93; color: white;">Edit</button></a>
-                                                    <a href=""><button type="button" class="btn" style="background-color: #fa8a93cb; color: white;">Delete</button></a>
-                                                </td>
+                                                    <form action="disable" method="post">
+                                                        <input type="hidden" name="id" value="${u.id}" />
+                                                        <c:if test="${u.is_admin>0}">
+                                                            <input type="hidden" name="action" value="0" />
+                                                            <button class="btn" onclick="this.form.submit()" style="background-color: #66d666;margin: 0 auto;" >Enabled</button>
+                                                        </c:if>
+                                                        <c:if test="${u.is_admin<0}">
+                                                            <input type="hidden" name="action" value="1" />
+                                                            <button class="btn" onclick="this.form.submit()" style="background-color: #fc2c3e;margin: 0 auto;" >Disabled</button>
+                                                        </c:if>
+                                                    </form>
+                                                    </td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
