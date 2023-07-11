@@ -218,7 +218,26 @@ public class ProductDAO extends DBContext {
         return list.subList(start, end);
     }
 
-    
-    
-    
+
+    public int addProduct(Product product) {
+        String sql = "insert into Product(name, description, brand_id, subcategory_id, thumbnail) values(?,?,?,?,?)";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, product.getName());
+            ps.setString(2, product.getDescription());
+            ps.setInt(3, product.getBrand().getId());
+            ps.setInt(4, product.getSubcategory().getId());
+            ps.setString(5, product.getThumbnail());
+            ps.executeUpdate();
+            ps.close();
+            sql = "select max(id) from Product";
+            ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+        }
+        return -1;
+    }
 }

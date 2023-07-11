@@ -50,8 +50,5 @@ public class BrandDAO extends DBContext {
         }
         return list;
     }
-    
-    
-    
-    
+
 }

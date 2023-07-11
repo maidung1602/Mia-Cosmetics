@@ -12,35 +12,35 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 import model.ProductModel;
 
 /**
- *
  * @author maidu
  */
 public class ProductModelDAO extends DBContext {
 
     public ProductModel getById(String id) {
         String sql = "select *\n" +
-            "from ProductModel\n" +
-            "where id=?";
+                "from ProductModel\n" +
+                "where id=?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                ProductModel p = new ProductModel(rs.getInt(1),rs.getInt(2),rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getInt(7) );
+                ProductModel p = new ProductModel(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getInt(7));
                 return p;
             }
         } catch (SQLException e) {
         }
         return null;
     }
-    
+
     public void updateQuantity(String ProductMdelId, int Quantity) {
         String sql = "UPDATE [dbo].[ProductModel]\n" +
-            "   SET [quantity] = ?\n" +
-            " WHERE id = ?";
+                "   SET [quantity] = ?\n" +
+                " WHERE id = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, Quantity);
@@ -49,7 +49,21 @@ public class ProductModelDAO extends DBContext {
         } catch (SQLException e) {
         }
     }
-    
-     
-    
+
+
+    public void addProductModel(ProductModel productModel) {
+        String sql = "insert into ProductModel (product_id, variant, image, origin_price, sale_price, quantity)\n" +
+                "        values (?,?, ?, ?, ?, ?);";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, productModel.getProductId());
+            ps.setString(2, productModel.getVariant());
+            ps.setString(3, productModel.getImage());
+            ps.setInt(4, productModel.getOrigin_price());
+            ps.setInt(5, productModel.getSale_price());
+            ps.setInt(6, productModel.getQuantity());
+            ps.executeQuery();
+        } catch (SQLException e) {
+        }
+    }
 }

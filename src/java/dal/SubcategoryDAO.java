@@ -46,7 +46,21 @@ public class SubcategoryDAO extends DBContext {
         }
         return list;
     }
-    
-    
-    
+
+
+    public List<Subcategory> getSubcategories() {
+        List<Subcategory> list = new ArrayList<>();
+        String sql = "select * from SubCategory";
+        DAO d = new DAO();
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Subcategory(rs.getInt(1),rs.getString(2), d.getCategoryById(rs.getInt(3)),rs.getString(4)));
+            }
+        } catch (SQLException e) {
+        }
+        return list;
+    }
+
 }

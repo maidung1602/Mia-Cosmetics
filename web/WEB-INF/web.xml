@@ -192,6 +192,14 @@
         <servlet-name>disableUser</servlet-name>
         <url-pattern>/disable</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AdminAddProduct</servlet-name>
+        <servlet-class>controller.Admin.AdminAddProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminAddProduct</servlet-name>
+        <url-pattern>/admin-add-product</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
