@@ -47,45 +47,48 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        UserDAO d=new UserDAO();
-        String name=request.getParameter("name");
-        String username=request.getParameter("username");
-        String password=request.getParameter("password");
-        String repassword=request.getParameter("repassword");
-        String phone=request.getParameter("phone");
-        String email=request.getParameter("email");
-        User b = d.checkAccount(username, password);
-        if (name ==null || name.equals("") || username ==null || username.equals("") ||
-        password ==null || password.equals("") || repassword ==null || repassword.equals("") ||
-        phone ==null || phone.equals("") ||email ==null || email.equals("")){
-            request.setAttribute("err", "Chưa nhập đủ thông tin");
-        }else if (!password.equals(repassword)) {
-            request.setAttribute("err", "Mật khẩu không khớp");
-        } else if (b!=null){
-            request.setAttribute("err", "Username đã tồn tại");
-        } else if (password.equals(repassword) && b==null){
-            User newUser;
-            try {
-                newUser = new User(0, name, username, MD5Hash.hash(password), email, phone, null, 1);
-                System.out.println(newUser);
-                d.insert(newUser);
-                User newa = d.checkAccount(username, MD5Hash.hash(password));
-                HttpSession session=request.getSession();
-                session.setAttribute("account", newa);
-                response.sendRedirect("home");
-            } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            UserDAO d=new UserDAO();
+            String name=request.getParameter("name");
+            String username=request.getParameter("username");
+            String password=request.getParameter("password");
+            String repassword=request.getParameter("repassword");
+            String phone=request.getParameter("phone");
+            String email=request.getParameter("email");
+            User b = d.checkAccount(username, MD5Hash.hash(password));
+            if (name ==null || name.equals("") || username ==null || username.equals("") ||
+                    password ==null || password.equals("") || repassword ==null || repassword.equals("") ||
+                    phone ==null || phone.equals("") ||email ==null || email.equals("")){
+                request.setAttribute("err", "Chưa nhập đủ thông tin");
+            }else if (!password.equals(repassword)) {
+                request.setAttribute("err", "Mật khẩu không khớp");
+            } else if (b!=null){
+                request.setAttribute("err", "Username đã tồn tại");
+            } else if (password.equals(repassword) && b==null){
+                User newUser;
+                try {
+                    newUser = new User(0, name, username, MD5Hash.hash(password), email, phone, "images/home/avatar-doi-ban-than-2021-182-696x696.webp", 1);
+                    d.insert(newUser);
+                    User newa = d.checkAccount(username, MD5Hash.hash(password));
+                    HttpSession session=request.getSession();
+                    session.setAttribute("account", newa);
+                    response.sendRedirect("home");
+                } catch (NoSuchAlgorithmException ex) {
+                    Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
-           
-        } 
-        
-        request.setAttribute("name", name);
-        request.setAttribute("username", username);
-        request.setAttribute("password", password);
-        request.setAttribute("repassword", repassword);
-        request.setAttribute("phone", phone);
-        request.setAttribute("email", email);
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+            
+            request.setAttribute("name", name);
+            request.setAttribute("username", username);
+            request.setAttribute("password", password);
+            request.setAttribute("repassword", repassword);
+            request.setAttribute("phone", phone);
+            request.setAttribute("email", email);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /** 

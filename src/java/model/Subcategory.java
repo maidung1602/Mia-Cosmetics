@@ -65,9 +65,7 @@ public class Subcategory {
     
 
     
-    public static void main(String[] args) {
-        
-    }
+    
     
     
 }

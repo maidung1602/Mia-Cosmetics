@@ -1,5 +1,5 @@
-<div id="layoutSidenav_nav" >
-    <nav class="sb-sidenav accordion sb-sidenav-dark" style="background-color: #ffabb2 !important" id="sidenavAccordion">
+<div id="layoutSidenav_nav" style="height: 800px;" >
+    <nav class="sb-sidenav accordion sb-sidenav-dark" style="background-color: #383838 !important" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <a class="nav-link" style="margin-top: 20px;" href="admin">
@@ -22,11 +22,11 @@
                     <div class="sb-nav-link-icon"><i class="fa fa-bookmark"></i></div>
                     Brands
                 </a>
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="admin-processing-order">
                     <div class="sb-nav-link-icon"><i class="fa fa-clipboard"></i></div>
-                    Orders Status
+                    Orders Processing
                 </a>
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="admin-order">
                     <div class="sb-nav-link-icon"><i class="fa fa-list-alt"></i></div>
                     Orders
                 </a>

@@ -36,9 +36,18 @@
                                         </a>
                                     </c:if>
                                     <ul style="margin-top: 36px; font-size: 14px; width: 80px; background: #f1f1f1;" role="menu" class="sub-menu">  
+                                        <c:if test="${sessionScope.account.is_admin==2}">
+                                            <li><a href="admin">Admin</a></li>
+                                        </c:if>
+                                        <c:if test="${sessionScope.account.is_admin==3}">
+                                            <li><a href="admin-user">User Admin</a></li>
+                                        </c:if>
                                         <li><a href="profile">Profile</a></li>
                                         <li><a href="changepassword">Change password</a></li>
-                                        <li><a href="">Orders</a></li>
+                                        <c:if test="${sessionScope.account.is_admin==1}">
+                                            <li><a href="order">Orders</a></li>
+                                        </c:if>
+                                        
                                         <li><a href="logout">Logout</a></li>
                                     </ul>
                                 </c:if>

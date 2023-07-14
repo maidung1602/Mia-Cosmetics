@@ -69,12 +69,15 @@ public class CartServlet extends HttpServlet {
                 .findFirst().orElse(new Cookie("cart", ""));
         if (action != null && action.equals("add")) {
             addToCart(cart, id, quantity);
+            cart.setMaxAge(60*60*24*7);
+            response.addCookie(cart);
+            response.sendRedirect("detail?id="+request.getParameter("product-id"));
         } else {
             removeFromCart(cart, id);
+            cart.setMaxAge(60*60*24*7);
+            response.addCookie(cart);
+            response.sendRedirect("cart");
         }
-        cart.setMaxAge(60*60*24*7);
-        response.addCookie(cart);
-        response.sendRedirect("cart");
     }
 
     /** 

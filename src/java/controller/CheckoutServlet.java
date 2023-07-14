@@ -60,7 +60,6 @@ public class CheckoutServlet extends HttpServlet {
         HttpSession session=request.getSession();
         User a = (User) session.getAttribute("account");
         int userId = a.getId();
-        System.out.println(userId);
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
@@ -77,7 +76,6 @@ public class CheckoutServlet extends HttpServlet {
         String size_raw = request.getParameter("sizeOfCart");
         int size = Integer.parseInt(size_raw);
         int orderID = odb.getLastOrderId();
-        System.out.println(orderID);
         String[] productModelId = request.getParameterValues("productModelId");
         String[] quantity = request.getParameterValues("quantity");
         String[] detailTotal = request.getParameterValues("detailTotal");

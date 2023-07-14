@@ -30,4 +30,52 @@ public class CategoryDAO extends DBContext{
         }
         return list;
     }
+    
+    public void insert(Category a) {
+                String sql = "INSERT INTO [dbo].[Category]\n" +
+        "           ([category_name])\n" +
+        "     VALUES\n" +
+        "           (?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, a.getCategory_name());
+            st.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+    
+    public void update(Category a) {
+        String sql = "UPDATE [dbo].[Category]\n" +
+        "   SET [category_name] = ?\n" +
+        " WHERE id=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, a.getCategory_name());
+            st.setInt(2, a.getId());
+            st.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+    
+    public void deleteSubcategory(int id) {
+        String sql = "DELETE FROM [dbo].[SubCategory]\n" +
+        "      WHERE category_id = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+    
+    public void deleteCategory(int id) {
+        String sql = "DELETE FROM [dbo].[Category]\n" +
+        "      WHERE id = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
 }

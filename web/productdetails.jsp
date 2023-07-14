@@ -53,7 +53,8 @@
                                     <!-- Modal view content -->
                                     <div class="col-md-7 col-sm-7 col-xs-12">
                                         <form action="cart" method="post">
-                                           <input type="hidden" name="action" value="add"/> 
+                                           <input type="hidden" name="action" value="add"/>
+                                           <input type="hidden" name="product-id" value="${product.id}" />
                                         <div class="aa-product-view-content">
                                             <h3>${product.name}</h3>
                                             <p>${product.description}</p>
@@ -66,7 +67,7 @@
                                                 </div>
                                                 <c:set var="productModels" value="${product.getProductModel()}"/>
                                                 <c:if test="${productModels.size()==1}">
-                                                    <input name="model_id" type="hidden" value="${productModels.get(0).getId()}"/>
+                                                    <input name="model_id" id="model_id" type="hidden" value="${productModels.get(0).getId()}"/>
                                                 </c:if>
                                                 <c:if test="${productModels.size()>1}">
                                                     <div class="aa-prod-quantity">
@@ -84,13 +85,13 @@
                                                             <input type="hidden" id="origin-price-${s.id}" value="${s.origin_price}"/>
                                                             <input type="hidden" id="sale-price-${s.id}" value="${s.sale_price}"/>
                                                         </c:forEach>
-                                                            <p style="display: none" id="noti">Chưa chọn phân loại</p>
+                                                            <p style="display: none; color: red; margin: 8px 0 0" id="noti">Chưa chọn phân loại</p>
                                                     </div>
                                                 </c:if>
                                                 <div class="">
                                                     Số lượng: <input type="number" value="1" min="1" name="quantity" style="width:40px">
                                                 </div>
-                                                    <button class="aa-add-to-cart-btn" style="background-color: pink" onclick="submitForm(${product.id})">Add To Cart</button>
+                                                    <button type="button" id="sb" class="aa-add-to-cart-btn" style="background-color: pink" onclick="submitForm()">Add To Cart</button>
                                             </div>
                                         </div>
                                         </form>
@@ -100,9 +101,9 @@
 
                             <!-- Related product -->
                             <div class="aa-product-related-item">
-                                <h2 style="margin-top: 32px; text-align: center; border-top: 1px solid #ddd; padding-top: 20px";>Related Products</h2>
+                                <h2 style="margin-top: 32px; text-align: center; border-top: 1px solid #ddd; padding: 28px 0 40px";>Related Products</h2>
                                 <c:forEach items="${product.getRelated()}" var="s">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-3 shadow">
                                         <div class="product-image-wrapper" onclick="window.location.href = 'detail?id=${s.id}'">
                                             <div class="single-products">
                                                 <div class="productinfo text-center">
@@ -138,13 +139,12 @@
                     document.getElementById('origin-price-tag').innerHTML = '<del>' + originPrice + '</del>';
                     document.getElementById('sale-price-tag').innerHTML = salePrice;
                 }
-                function submitForm(index) {
+                function submitForm() {
                     let model = document.getElementById('model_id').value;
                     if(model === '0'){
                         document.getElementById('noti').style.display="block";
                     } else{
-                        document.getElementById('noti').style.display="none";
-                        this.form.submit();
+                        document.getElementById('sb').type="submit";
                     }    
                 }
                  

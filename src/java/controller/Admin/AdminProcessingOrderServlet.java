@@ -3,21 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller;
+package controller.Admin;
 
-import dal.UserDAO;
+import dal.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.OrderDTO;
 
 /**
  *
  * @author maidu
  */
-public class DisableUser extends HttpServlet {
+public class AdminProcessingOrderServlet extends HttpServlet {
    
     
     /** 
@@ -30,7 +32,10 @@ public class DisableUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
+        OrderDAO odb = new OrderDAO();
+        List<OrderDTO> orders = odb.getAllOrders();
+        request.setAttribute("orders", orders);
+        request.getRequestDispatcher("orderprocessingmanage.jsp").forward(request, response);
     } 
 
     /** 
@@ -43,16 +48,15 @@ public class DisableUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String id = request.getParameter("id");
-        String action = request.getParameter("action");
-        if (action.equals("0")){
-            UserDAO udb = new UserDAO();
-            udb.disable(id);
-            response.sendRedirect("admin-user");
+        OrderDAO odb = new OrderDAO();
+        int id = Integer.parseInt(request.getParameter("order-id"));
+        int status = Integer.parseInt(request.getParameter("status"));
+        if(status==4){
+            odb.updateStatus(id, status);
+            response.sendRedirect("order");
         } else {
-            UserDAO udb = new UserDAO();
-            udb.enable(id);
-            response.sendRedirect("admin-user");
+            odb.updateStatus(id, status);
+            response.sendRedirect("admin-processing-order");
         }
     }
 

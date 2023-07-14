@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller;
+package controller.Admin;
 
+import dal.BrandDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -16,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author maidu
  */
-public class AddUserServlet extends HttpServlet {
+public class AdminDeleteBrandServlet extends HttpServlet {
    
     /** 
      * Handles the HTTP <code>GET</code> method.
@@ -28,7 +29,14 @@ public class AddUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("adduser.jsp").forward(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        BrandDAO bdb = new BrandDAO();
+        try {
+            bdb.deleteBrand(id);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        response.sendRedirect("admin-brand");
     } 
 
     /** 

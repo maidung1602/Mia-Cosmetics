@@ -121,18 +121,40 @@
                                     <h5 style="line-height: 24px;">Tổng tiền: <span style="float:right; font-weight: bold" id="total-price2">${total+30}.000d</span></h5>
                                     <input type="hidden" name="total" id="total" value="${total+30}"/>
                                 </div>
-                                <c:if test="${sessionScope.account!=null}">
+                                <c:if test="${sessionScope.account.is_admin==1}">
                                     <c:set var="account" value="${sessionScope.account}" />
                                         <div style="margin-top: 20px">
                                             <h4 style="font-weight: bold; margin-bottom: 12px">Thông tin người nhận: </h4>
                                             <h5>Full Name: </h5><input value="${account.name}" type="text" name="name" /> <br/>
                                             <h5>Phone: </h5><input value="${account.phone}" type="number" name="phone" /> <br/>
+                                                <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <label for="kh_diachi">Tỉnh</label> <br />
+                                                    <select class="form-control" id="province">
+                                                        <option value="none">Tỉnh
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-4">
+                                                    <label for="district">Huyện</label> <br />
+                                                    <select class="form-control" id="district">
+                                                    </select>
+                                                </div>
+                                                <div class="col-4">
+                                                    <label for="kh_diachi">Xã</label> <br />
+                                                    <select class="form-control" id="ward">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                             <h5>Address: </h5><input type="text" name="address" /> <br/>
                                         </div>
                                             <p style="color:red; margin-bottom: 0; margin-top: 10px">${err}</p>
                                     <button style=" background-color: pink; margin-top: 24px" class="aa-add-to-cart-btn" onclick="this.form.submit()">Checkout</button>
                                </c:if>
-                               <c:if test="${sessionScope.account==null}">
+                               <c:if test="${sessionScope.account.is_admin!=1}">
                                     <a style=" background-color: pink; margin-top: 24px" class="aa-add-to-cart-btn" href="login">Checkout</a>
                                </c:if>
                             </div>
@@ -162,5 +184,7 @@
         }
         
     </script>
+    <script src="./js/checkout.js"></script>
+    
 </body>
 </html>

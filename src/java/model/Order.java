@@ -4,11 +4,18 @@
  */
 package model;
 
+import dal.DBContext;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author maidu
  */
-public class Order {
+public class Order extends DBContext {
     private int id;
     private int userId;
     private String name;
@@ -99,6 +106,33 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" + "id=" + id + ", userId=" + userId + ", name=" + name + ", phone=" + phone + ", address=" + address + ", orderDate=" + orderDate + ", status=" + status + ", total=" + total + '}';
+    }
+    
+    public List<OrderDetail> getOrderDetails(){
+        List<OrderDetail> list = new ArrayList<>();
+        String sql = "SELECT p.id, pm.image, p.thumbnail, p.name, pm.variant, pm.sale_price, od.quantity, od.detail_total\n" +
+            "  FROM [OrderDetail] od join [ProductModel] pm on od.product_model_id=pm.id join Product p on pm.product_id = p.id\n" +
+            "  WHERE order_id=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, this.id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                OrderDetail od = new OrderDetail();
+                od.setProductId(rs.getInt("id"));
+                od.setImage(rs.getString("image"));
+                od.setThumbnail(rs.getString("thumbnail"));
+                od.setProductName(rs.getString("name"));
+                od.setVariantName(rs.getString("variant"));
+                od.setSalePrice(rs.getInt("sale_price"));
+                od.setQuantity(rs.getInt("quantity"));
+                od.setDetailTotal(rs.getInt("detail_total"));
+                list.add(od);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
     }
     
     

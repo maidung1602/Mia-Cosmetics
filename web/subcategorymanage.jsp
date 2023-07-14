@@ -53,20 +53,19 @@
                                 <i class="fas fa-table me-1"></i>
                                 <span style="font-size: 24px;"> ${c.category_name}</span>
                             </div>
-                            <div class="card-body">
-                                <div class="row" style="padding-top: 36px">
+                            <div class="card-body" style="padding: 12px 20px">
+                                <div class="row" style="padding-top: 16px;">
                                     <c:set var="a" value="${c.id}"></c:set>
                                     <c:forEach items="${c.getSubByCid(a)}" var="s">
-                                        <div class="cate">
+                                        <div class="cate" style="position: relative; height: 140px; text-align: center">
                                             <h5>${s.subcategory_name}</h5>
-                                            <div style="padding-bottom: 4px">ID: ${s.id}</div>
-                                            <div>
-                                                <a href=""><button type="button" class="btn" style="background-color: #fa8a93; color: white;">Edit</button></a>
-                                                <a href=""><button type="button" class="btn" style="background-color: #fa8a93cb; color: white;">Delete</button></a>
+                                            <div style="position: absolute; bottom: 20px; left: 52px">
+                                                <button onclick="window.location.href='admin-edit-subcategory?id='+${s.id}" type="button" class="btn" style="background-color: #fa8a93; color: white;">Edit</button>
+                                                <button onclick="doDelete('${s.id}')" type="button" class="btn" style="background-color: #fa8a93cb; color: white;">Delete</button>
                                             </div>
                                         </div>
                                     </c:forEach>
-                                    <a class="cate" style="text-decoration: none; color: black; background-color: #eee" ><div  style="padding-top: 32px; ">+ Add new</div></a>      
+                                    <a class="cate" onclick="window.location.href='admin-add-subcategory?category_id='+${a}" style="text-decoration: none; color: black; background-color: #eee; cursor: pointer;" ><div  style="padding-top: 26px; ">+ Add new</div></a>      
                                 </div>
                             </div>
                         </div>
@@ -75,12 +74,13 @@
                 </main>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script>
+            function doDelete(id) {
+                if(confirm('Có chắc chắn muốn xóa không ?')){
+                    window.location.href='admin-delete-subcategory?id='+id;
+                }
+            }
+        </script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>
 </html>

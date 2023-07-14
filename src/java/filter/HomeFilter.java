@@ -19,6 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Category;
+import model.User;
 
 /**
  *
@@ -112,7 +113,13 @@ public class HomeFilter implements Filter {
         String url=req.getServletPath();
         if(url.endsWith(".jsp")) {
             res.sendRedirect("home");
+        } else if(url.startsWith("/admin")) {
+            User a = (User) req.getSession().getAttribute("account");
+            if(a==null || a.getIs_admin()<2){
+                res.sendRedirect("home");
+            }
         }
+        
         Throwable problem = null;
         try {
             CategoryDAO cdb = new CategoryDAO();

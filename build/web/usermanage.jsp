@@ -43,12 +43,31 @@
         </style>
     </head>
     <body class="sb-nav-fixed">
-        <%@include file="component/admin_header.jsp" %>
+        <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background: #ff939c">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="admin-user">ADMIN</a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" style="background-color: #FF939C;">
+    </form>
+    <!-- Navbar-->
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"  role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="home">Home</a></li>
+                <li><a class="dropdown-item" href="profile">Profile</a></li>
+                <li><a class="dropdown-item" href="changepassword">Change password</a></li>
+                <li><a class="dropdown-item" href="logout">Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav" >
-                <nav class="sb-sidenav accordion sb-sidenav-dark" style="background-color: #ffabb2 !important" id="sidenavAccordion">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" style="background-color: #383838 !important" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
-                        <div class="nav">
+                        <div class="nav" style="padding-top: 16px">
                             <a class="nav-link" href="admin-user">
                                 <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
                                 Users
@@ -69,7 +88,7 @@
                             </div>
                             <div class="card-body">
                                 <button type="button" class="btn" style="float:right; background-color: #eee; margin-left: 20px;" 
-                                        data-mdb-ripple-color="dark" onclick="window.location.href='add-user'">Add new</button>
+                                        data-mdb-ripple-color="dark" onclick="window.location.href='admin-add-user'">Add new</button>
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
@@ -96,15 +115,15 @@
                                                     <c:if test="${u.is_admin==1}">Customer</c:if>
                                                 </td>
                                                 <td>
-                                                    <form action="disable" method="post">
+                                                    <form action="admin-disable-user" method="post">
                                                         <input type="hidden" name="id" value="${u.id}" />
                                                         <c:if test="${u.is_admin>0}">
                                                             <input type="hidden" name="action" value="0" />
-                                                            <button class="btn" onclick="this.form.submit()" style="background-color: #66d666;margin: 0 auto;" >Enabled</button>
+                                                            <button class="btn" onclick="this.form.submit()" style="background-color: #61E002;margin: 0 auto; color: white" >Enabled</button>
                                                         </c:if>
                                                         <c:if test="${u.is_admin<0}">
                                                             <input type="hidden" name="action" value="1" />
-                                                            <button class="btn" onclick="this.form.submit()" style="background-color: #fc2c3e;margin: 0 auto;" >Disabled</button>
+                                                            <button class="btn" onclick="this.form.submit()" style="background-color: #FF4C4C;margin: 0 auto; color: white" >Disabled</button>
                                                         </c:if>
                                                     </form>
                                                     </td>
