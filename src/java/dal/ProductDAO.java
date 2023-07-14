@@ -192,7 +192,6 @@ public class ProductDAO extends DBContext {
         } catch (SQLException e) {
 //            e.printStackTrace();
         }
-        System.out.println(list.size());
         return list;
     }
     
@@ -214,11 +213,6 @@ public class ProductDAO extends DBContext {
         return null;
     }
     
-    public List<Product> getListByPage(List<Product> list, int start,int end){
-        return list.subList(start, end);
-    }
-
-
     public int addProduct(Product product) {
         String sql = "insert into Product(name, description, brand_id, subcategory_id, thumbnail) values(?,?,?,?,?)";
         try {
@@ -240,4 +234,58 @@ public class ProductDAO extends DBContext {
         }
         return -1;
     }
+    
+    public void updateProduct(int id, String name, String description, int brand_id, int subcategory_id, String thumbnail) {
+        String sql = "UPDATE [dbo].[Product]\n" +
+            "   SET [name] = ?\n" +
+            "      ,[description] = ?\n" +
+            "      ,[brand_id] = ?\n" +
+            "      ,[subcategory_id] = ?\n" +
+            "      ,[thumbnail] = ?\n" +
+            " WHERE id=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, description);
+            ps.setInt(3, brand_id);
+            ps.setInt(4, subcategory_id);
+            ps.setString(5, thumbnail);
+            ps.setInt(6, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+    
+    public void deleteProductModelByProductID(int id) {
+        String sql = "DELETE FROM [dbo].[ProductModel]\n" +
+            "      WHERE product_id=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+    
+    public void deleteProduct(int id) {
+        String sql = "DELETE FROM [dbo].[Product]\n" +
+            "      WHERE id=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+    
+    public List<Product> getListByPage(List<Product> list, int start,int end){
+        return list.subList(start, end);
+    }
+
+    
+    public static void main(String[] args) {
+//        ProductDAO p = new ProductDAO();
+//        p.deleteProduct(141);
+    }
+    
 }

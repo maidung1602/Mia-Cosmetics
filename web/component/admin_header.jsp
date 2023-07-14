@@ -10,6 +10,8 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown"  role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="home">Home</a></li>
+                <li><a class="dropdown-item" href="profile">Profile</a></li>
                 <li><a class="dropdown-item" href="changepassword">Change password</a></li>
                 <li><a class="dropdown-item" href="logout">Logout</a></li>
             </ul>

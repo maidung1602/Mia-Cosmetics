@@ -49,9 +49,8 @@ public class ProductModelDAO extends DBContext {
         } catch (SQLException e) {
         }
     }
-
-
-    public void addProductModel(ProductModel productModel) {
+    
+      public void addProductModel(ProductModel productModel) {
         String sql = "insert into ProductModel (product_id, variant, image, origin_price, sale_price, quantity)\n" +
                 "        values (?,?, ?, ?, ?, ?);";
         try {
@@ -66,4 +65,40 @@ public class ProductModelDAO extends DBContext {
         } catch (SQLException e) {
         }
     }
+      
+      public void updateProductModel(ProductModel productModel) {
+        String sql = "UPDATE [dbo].[ProductModel]\n" +
+            "   SET [variant] = ?\n" +
+            "      ,[image] = ?\n" +
+            "      ,[origin_price] = ?\n" +
+            "      ,[sale_price] = ?\n" +
+            "      ,[quantity] = ?\n" +
+            " WHERE id=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, productModel.getVariant());
+            ps.setString(2, productModel.getImage());
+            ps.setInt(3, productModel.getOrigin_price());
+            ps.setInt(4, productModel.getSale_price());
+            ps.setInt(5, productModel.getQuantity());
+            ps.setInt(6, productModel.getId());
+            ps.executeQuery();
+        } catch (SQLException e) {
+        }
+    }
+      
+    public void deleteProductModel(int id) {
+        String sql = "DELETE FROM [dbo].[ProductModel]\n" +
+            "      WHERE id=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+      
+      
+    
+    
 }

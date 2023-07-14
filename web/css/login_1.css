@@ -76,10 +76,12 @@ form {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0 50px;
+    padding: 34px 42px 0;
     height: 100%;
-    margin: 60px 42px 44px 260px;
-    /* text-align: center; */
+    margin: 60px 42px 0px 260px;
+    width: 572px;
+    /*text-align: center;*/
+    border-radius: 30px;
 }
 
 .remember {
@@ -116,7 +118,7 @@ input {
     overflow: hidden;
     width: 900px;
     max-width: 100%;
-    min-height: 568px;
+    min-height: 680px;
 }
 
 .form-container {

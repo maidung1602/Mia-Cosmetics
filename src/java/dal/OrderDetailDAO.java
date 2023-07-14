@@ -63,7 +63,7 @@ public class OrderDetailDAO extends DBContext {
     
     public void insertOrderDetail(int orderId, String productModelId, String quantity, String DetailTotal) {
         String sql = "INSERT INTO [dbo].[OrderDetail]\n" +
-"           ([oder_id]\n" +
+"           ([order_id]\n" +
 "           ,[product_model_id]\n" +
 "           ,[quantity]\n" +
 "           ,[detail_total])\n" +
@@ -78,6 +78,33 @@ public class OrderDetailDAO extends DBContext {
             st.executeUpdate();
         } catch (SQLException e) {
         }
+    }
+    
+    public List<OrderDetail> getOrderDetails(int id){
+        List<OrderDetail> list = new ArrayList<>();
+        String sql = "SELECT p.id, pm.image, p.thumbnail, p.name, pm.variant, pm.sale_price, od.quantity, od.detail_total\n" +
+            "  FROM [OrderDetail] od join [ProductModel] pm on od.product_model_id=pm.id join Product p on pm.product_id = p.id\n" +
+            "  WHERE order_id=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                OrderDetail od = new OrderDetail();
+                od.setProductId(rs.getInt("id"));
+                od.setImage(rs.getString("image"));
+                od.setThumbnail(rs.getString("thumbnail"));
+                od.setProductName(rs.getString("name"));
+                od.setVariantName(rs.getString("variant"));
+                od.setSalePrice(rs.getInt("sale_price"));
+                od.setQuantity(rs.getInt("quantity"));
+                od.setDetailTotal(rs.getInt("detail_total"));
+                list.add(od);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
     }
     
    

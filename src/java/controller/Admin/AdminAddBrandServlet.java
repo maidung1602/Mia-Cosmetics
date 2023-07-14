@@ -5,22 +5,22 @@
 
 package controller.Admin;
 
-import dal.ProductDAO;
+import dal.BrandDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.Product;
+import model.Brand;
 
 /**
  *
  * @author maidu
  */
-public class AdminProduct extends HttpServlet {
+public class AdminAddBrandServlet extends HttpServlet {
    
+    
     /** 
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
@@ -31,10 +31,7 @@ public class AdminProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        ProductDAO pdb = new ProductDAO();
-        List<Product> products = pdb.getAllProduct();
-        request.setAttribute("products", products);
-        request.getRequestDispatcher("productmanage.jsp").forward(request, response);   
+        request.getRequestDispatcher("admin-add-brand.jsp").forward(request, response);
     } 
 
     /** 
@@ -47,7 +44,12 @@ public class AdminProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-       
+        String brand_name = request.getParameter("brand_name");
+        Brand b = new Brand();
+        b.setBrand_name(brand_name);
+        BrandDAO bdb = new BrandDAO();
+        bdb.insert(b);
+        response.sendRedirect("admin-brand");
     }
 
     /** 

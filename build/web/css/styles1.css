@@ -11031,17 +11031,17 @@ body {
   color: rgba(38, 38, 38);
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link {
-  color: rgba(38, 38, 38);
+  color: rgba(255, 255, 255, 0.5);
   /* padding: 20px 28px; */
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon {
-  color: rgba(38, 38, 38);
+  color: rgba(255, 255, 255, 0.5);
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow {
   color: rgba(38, 38, 38);
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
-  color: #383838;
+  color: rgba(255, 255, 255, 0.9);
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link.active {
   color: #383838;

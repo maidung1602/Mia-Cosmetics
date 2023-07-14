@@ -28,7 +28,7 @@
                         <i style="background-color: #eee; padding: 15px;" onclick="myFunction2()" id="eye2" class="fa fa-eye-slash" aria-hidden="true"></i>
                     </div>
                     <input required name="phone" type="text" placeholder="Phone Number" value="${phone}"/>
-                    <input required name="email" type="text" placeholder="Email" value="${email}"/>
+                    <input required name="email" type="text" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" placeholder="Email" value="${email}"/>
                     <p style="color: red; margin: 0">${err}</p>
                     <button onclick="this.form.submit()" style="margin-top: 28px">Đăng ký</button>
                 </form>
@@ -46,9 +46,12 @@
                     <div>
                         <span class="remember" style="font-size:14px">
                             <input type="checkbox" ${(cookie.crem!=null?'checked':'')} 
-                                   style="width:10px" value="on" name="rem"/> Ghi nhớ đăng nhập</span>
+                                   style="width:16px" value="on" name="rem"/> Ghi nhớ đăng nhập</span>
                     </div>
-                    <button onclick="this.form.submit()" style="margin-top:48px">Đăng nhập</button>
+                    <button style="margin-top:44px">Đăng nhập</button>
+                    <p style="margin: 14px 0">Or login with</p>
+                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:9999/mia/login-google&response_type=code
+    &client_id=570524258444-ridflrjec1qvuq3oidpn67cc1gm3t8i6.apps.googleusercontent.com&approval_prompt=force" style="margin:0; background-color: #f1f1f1; border-radius: 50%; padding: 8px"><img src="https://colorlib.com/etc/lf/Login_v9/images/icons/icon-google.png" alt="alt"/></a>
                 </form>
             </div>
             <div class="overlay-container">

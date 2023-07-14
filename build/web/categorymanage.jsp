@@ -53,32 +53,31 @@
                                 List of categories
                             </div>
                             <div class="card-body">
-                                <button type="button" class="btn" style="float:right; background-color: #eee; margin-left: 20px;" 
+                                <button type="button" onclick="window.location.href='admin-add-category'" class="btn" style="float:right; background-color: #eee; margin-left: 20px;" 
                                         data-mdb-ripple-color="dark">Add new</button>
                                 <div class="row" style="padding-top: 20px">
                                     <c:forEach items="${categories}" var="c">
-                                        <div class="cate">
-                                             <h4>${c.category_name}</h4>
-                                             <div style="padding-bottom: 4px">ID: ${c.id}</div>
-                                        <div>
-                                            <a href=""><button type="button" class="btn" style="background-color: #fa8a93; color: white;">Edit</button></a>
-                                            <a href=""><button type="button" class="btn" style="background-color: #fa8a93cb; color: white;">Delete</button></a>
+                                        <div class="cate" style="position: relative; height: 160px; text-align: center">
+                                            <h4>${c.category_name}</h4>
+                                            <div style="position: absolute; bottom: 20px; left: 52px">
+                                                <button type="button" onclick="window.location.href='admin-edit-category?id='+${c.id}" class="btn" style="background-color: #fa8a93; color: white;">Edit</button>
+                                                <button type="button" onclick="doDelete('${c.id}')" class="btn" style="background-color: #fa8a93cb; color: white;">Delete</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </c:forEach>
+                                    </c:forEach>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </main>
             </div>
-        </main>
-    </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="assets/demo/chart-area-demo.js"></script>
-<script src="assets/demo/chart-bar-demo.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-<script src="js/datatables-simple-demo.js"></script>
-</body>
+        </div>
+        <script>
+           function doDelete(id) {
+               if(confirm('Có chắc chắn muốn xóa không ?')){
+                   window.location.href='admin-delete-category?id='+id;
+               }
+           }
+        </script>
+    </body>
 </html>

@@ -4,6 +4,18 @@
         <filter-name>HomeFilter</filter-name>
         <filter-class>filter.HomeFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>filter.AdminFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/admin-add-user</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/admin-user</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>HomeFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -70,11 +82,11 @@
     </servlet>
     <servlet>
         <servlet-name>AddUserServlet</servlet-name>
-        <servlet-class>controller.AddUserServlet</servlet-class>
+        <servlet-class>controller.AdminAddUserServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminProduct</servlet-name>
-        <servlet-class>controller.Admin.AdminProduct</servlet-class>
+        <servlet-class>controller.Admin.AdminProductServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminCategoryServlet</servlet-name>
@@ -98,7 +110,87 @@
     </servlet>
     <servlet>
         <servlet-name>disableUser</servlet-name>
-        <servlet-class>controller.DisableUser</servlet-class>
+        <servlet-class>controller.AdminDisableUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddBrandServlet</servlet-name>
+        <servlet-class>controller.Admin.AdminAddBrandServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddProductServlet</servlet-name>
+        <servlet-class>controller.Admin.AdminAddProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminEditBrandServlet</servlet-name>
+        <servlet-class>controller.Admin.AdminEditBrandServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddCategory</servlet-name>
+        <servlet-class>controller.Admin.AdminAddCategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminEditCategory</servlet-name>
+        <servlet-class>controller.Admin.AdminEditCategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddSubcategory</servlet-name>
+        <servlet-class>controller.Admin.AdminAddSubcategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminEditSubcategoryServlet</servlet-name>
+        <servlet-class>controller.Admin.AdminEditSubcategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminEditProductServlet</servlet-name>
+        <servlet-class>controller.Admin.AdminEditProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddProductModelServlet</servlet-name>
+        <servlet-class>controller.Admin.AdminAddProductModelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminEditProductModelServlet</servlet-name>
+        <servlet-class>controller.Admin.AdminEditProductModelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteProduct</servlet-name>
+        <servlet-class>controller.Admin.AdminDeleteProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteProductModel</servlet-name>
+        <servlet-class>controller.Admin.AdminDeleteProductModelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteSubcategory</servlet-name>
+        <servlet-class>controller.Admin.AdminDeleteSubcategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteCategoryServlet</servlet-name>
+        <servlet-class>controller.Admin.AdminDeleteCategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteBrandServlet</servlet-name>
+        <servlet-class>controller.Admin.AdminDeleteBrandServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminOrderServlet</servlet-name>
+        <servlet-class>controller.Admin.AdminOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrdersServlet</servlet-name>
+        <servlet-class>controller.OrdersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminProccessingOrderServlet</servlet-name>
+        <servlet-class>controller.Admin.AdminProcessingOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminOrderDetailServlet</servlet-name>
+        <servlet-class>controller.Admin.AdminOrderDetailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginGoogleServlet</servlet-name>
+        <servlet-class>controller.LoginGoogleServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
@@ -162,7 +254,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddUserServlet</servlet-name>
-        <url-pattern>/add-user</url-pattern>
+        <url-pattern>/admin-add-user</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminProduct</servlet-name>
@@ -190,7 +282,87 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>disableUser</servlet-name>
-        <url-pattern>/disable</url-pattern>
+        <url-pattern>/admin-disable-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddBrandServlet</servlet-name>
+        <url-pattern>/admin-add-brand</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddProductServlet</servlet-name>
+        <url-pattern>/admin-add-product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminEditBrandServlet</servlet-name>
+        <url-pattern>/admin-edit-brand</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddCategory</servlet-name>
+        <url-pattern>/admin-add-category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminEditCategory</servlet-name>
+        <url-pattern>/admin-edit-category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddSubcategory</servlet-name>
+        <url-pattern>/admin-add-subcategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminEditSubcategoryServlet</servlet-name>
+        <url-pattern>/admin-edit-subcategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminEditProductServlet</servlet-name>
+        <url-pattern>/admin-edit-product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddProductModelServlet</servlet-name>
+        <url-pattern>/admin-add-productmodel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminEditProductModelServlet</servlet-name>
+        <url-pattern>/admin-edit-productmodel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteProduct</servlet-name>
+        <url-pattern>/admin-delete-product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteProductModel</servlet-name>
+        <url-pattern>/admin-delete-productmodel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteSubcategory</servlet-name>
+        <url-pattern>/admin-delete-subcategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteCategoryServlet</servlet-name>
+        <url-pattern>/admin-delete-category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteBrandServlet</servlet-name>
+        <url-pattern>/admin-delete-brand</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminOrderServlet</servlet-name>
+        <url-pattern>/admin-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrdersServlet</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminProccessingOrderServlet</servlet-name>
+        <url-pattern>/admin-processing-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminOrderDetailServlet</servlet-name>
+        <url-pattern>/admin-order-detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginGoogleServlet</servlet-name>
+        <url-pattern>/login-google</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AdminAddProduct</servlet-name>

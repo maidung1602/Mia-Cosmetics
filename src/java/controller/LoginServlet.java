@@ -70,7 +70,6 @@ public class LoginServlet extends HttpServlet {
         UserDAO d=new UserDAO();
         try {
             User a=d.checkAccount(u, MD5Hash.hash(p));
-            System.out.println(a);
             if(a==null){
                 request.setAttribute("error", "Thông tin đăng nhập không chính xác");
                 request.getRequestDispatcher("login.jsp").forward(request, response);

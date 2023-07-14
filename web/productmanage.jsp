@@ -35,7 +35,7 @@
                   width: 6%;
               }
               th:last-child {
-                  width:10%;
+                  width:14%;
               }
               td:last-child {
                   text-align: center;
@@ -53,10 +53,10 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Lits of products
+                                List of products
                             </div>
                             <div class="card-body">
-                                <button type="button" class="btn" style="float:right; background-color: #eee; margin-left: 20px;" 
+                                <button type="button" class="btn" onclick="window.location.href='admin-add-product'" style="float:right; background-color: #eee; margin-left: 20px;" 
                                         data-mdb-ripple-color="dark">Add new</button>
                                 <table id="datatablesSimple">
                                     <thead>
@@ -82,8 +82,8 @@
                                             <td>${p.subcategory.subcategory_name}</td>
                                             <td>${p.subcategory.category.category_name}</td>
                                             <td>
-                                                <a href=""><button type="button" class="btn" style="background-color: #fa8a93; color: white;">Edit</button></a>
-                                                <a href=""><button type="button" class="btn" style="background-color: #fa8a93cb; color: white;">Delete</button></a>
+                                                <button type="button" onclick="window.location.href='admin-edit-product?id='+${p.id}" class="btn" style="background-color: #fa8a93; color: white;">Edit</button>
+                                                <button type="button" onclick="doDelete('${p.id}')" class="btn" style="background-color: #fa8a93cb; color: white;">Delete</button>
                                             </td>
                                         </tr>
                                         </c:forEach>
@@ -95,6 +95,13 @@
                 </main>
             </div>
         </div>
+        <script>
+            function doDelete(id) {
+                if(confirm('Co that su muon xoa khong?')){
+                    window.location.href='admin-delete-product?id='+id;
+                }
+            }
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

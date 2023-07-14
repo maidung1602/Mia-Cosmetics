@@ -4,12 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/web/cart.jsp</file>
-            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/src/java/controller/LoginServlet.java</file>
-            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/src/java/dal/disableUser.java</file>
-            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/web/usermanage.jsp</file>
-            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/src/java/dal/UserDAO.java</file>
-            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/src/java/controller/CartServlet.java</file>
-            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/web/home.jsp</file>
+            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/web/orderprocessingmanage.jsp</file>
+            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/src/java/controller/CheckoutServlet.java</file>
+            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/src/java/controller/AdminDisableUserServlet.java</file>
+            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/src/java/dal/OrderDetailDAO.java</file>
         </group>
     </open-files>
 </project-private>

@@ -129,7 +129,6 @@ public class Product extends DBContext {
         String sql = "select *\n" +
             "from ProductModel pm\n" +
             "where pm.product_id=?";
-        ProductDAO d = new ProductDAO();
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, this.id);

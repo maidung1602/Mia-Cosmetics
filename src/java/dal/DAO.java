@@ -53,9 +53,9 @@ public class DAO extends DBContext {
     
     public Brand getBrandById(int id) {
         String sql = "select b.id, b.brand_name, count(b.id) \n" +
-            "from brand b join Product p on p.brand_id = b.id\n" +
-            "where b.id=?\n" +
-            "group by b.id, b.brand_name";  
+            "            from brand b full join Product p on p.brand_id = b.id\n" +
+            "            where b.id=?\n" +
+            "            group by b.id, b.brand_name";  
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);

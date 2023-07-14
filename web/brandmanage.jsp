@@ -32,7 +32,7 @@
                 box-shadow: 1px 1px 6px #ccc;
                 padding: 32px;
                 margin: 16px;
-                width: 18%;
+                width: 17%;
                 border-radius: 10px;
                 line-height: 28px;
             }
@@ -55,18 +55,17 @@
                                 List of categories
                             </div>
                             <div class="card-body">
-                                <div style="height: 40px">
-                                    <button type="button" class="btn" style="float:right; background-color: #eee; margin-left: 20px;" 
+                                <div style="height: 48px">
+                                    <button type="button" onclick="window.location.href='admin-add-brand'" class="btn" style="float:right; background-color: #eee; margin-left: 20px;" 
                                         data-mdb-ripple-color="dark">Add new</button>
                                 </div>
                                 <div class="row" style="padding-top: 20px">
                                     <c:forEach items="${brands}" var="b">
                                         <div class="cate">
-                                            <div>${b.brand_name}</div>
-                                            <div style="padding-bottom: 4px">ID: ${b.id}</div>
+                                            <h5>${b.brand_name}</h5>
                                             <div>
-                                                <a href=""><button type="button" class="btn" style="background-color: #fa8a93; color: white;">Edit</button></a>
-                                                <a href=""><button type="button" class="btn" style="background-color: #fa8a93cb; color: white;">Delete</button></a>
+                                                <button onclick="window.location.href='admin-edit-brand?id='+${b.id}" type="button" class="btn" style="background-color: #fa8a93; color: white;">Edit</button>
+                                                <button type="button" onclick="doDelete('${b.id}')" class="btn" style="background-color: #fa8a93cb; color: white;">Delete</button>
                                             </div>
                                         </div>
                                     </c:forEach>
@@ -77,12 +76,12 @@
                 </main>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script>
+            function doDelete(id) {
+                if(confirm('Có chắc chắn muốn xóa không ?')){
+                    window.location.href='admin-delete-brand?id='+id;
+                }
+            }
+        </script>
     </body>
 </html>
