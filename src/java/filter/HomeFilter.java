@@ -15,6 +15,7 @@ import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -110,15 +111,11 @@ public class HomeFilter implements Filter {
         doBeforeProcessing(request, response);
         HttpServletRequest req=(HttpServletRequest)request;
         HttpServletResponse res=(HttpServletResponse)response;
+        Cookie cu= new Cookie("csize", "0");
         String url=req.getServletPath();
         if(url.endsWith(".jsp")) {
             res.sendRedirect("home");
-        } else if(url.startsWith("/admin")) {
-            User a = (User) req.getSession().getAttribute("account");
-            if(a==null || a.getIs_admin()<2){
-                res.sendRedirect("home");
-            }
-        }
+        } 
         
         Throwable problem = null;
         try {

@@ -157,7 +157,7 @@
                         <div class="category-tab"><!--category-tab-->
                             <div class="tab-content">
                                 <c:forEach items="${categories}" var="c">
-                                    <h3 style="padding-bottom: 20px;"><a href="products?cid==${c.id}" style="color: #fe5c82">${c.category_name}</a></h3>
+                                    <h3 style="padding-bottom: 20px;"><a href="products?cid=${c.id}" style="color: #fe5c82">${c.category_name}</a></h3>
                                     <div class="row">
                                         <c:set var="b" value="${c.id}"></c:set>
                                         <c:forEach items="${c.getCateHotProduct(b)}" var="s">

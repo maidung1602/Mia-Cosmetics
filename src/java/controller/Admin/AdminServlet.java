@@ -5,11 +5,20 @@
 
 package controller.Admin;
 
+import dal.CategoryDAO;
+import dal.DAO;
+import dal.ProductDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.time.LocalDate;
+import java.util.List;
+import model.Category;
+import model.ProductDTO;
+import model.UserDTO;
 
 /**
  *
@@ -28,6 +37,31 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        LocalDate localDate = LocalDate.now();
+        int curryear = localDate.getYear();
+        int currmonth = localDate.getMonthValue();
+         DAO d = new DAO();
+        //money
+        List<Integer> money = d.getMoneyByMonth(currmonth, curryear);
+        request.setAttribute("money", money);
+        //theo cate
+        CategoryDAO cdb = new CategoryDAO();
+        List<Category> cates = cdb.getCategories();
+        request.setAttribute("cates", cates);
+        
+        List<Integer> cate = d.getCateByMonth(currmonth, curryear);
+        request.setAttribute("cate", cate);
+        // top user
+        UserDAO udb = new UserDAO();
+        List<UserDTO> hotusers = udb.getActiveUser(currmonth, curryear);
+        request.setAttribute("hotusers", hotusers);
+        // top product
+        ProductDAO pdb = new ProductDAO();
+        List<ProductDTO> hotpro = pdb.getHotProductByMonth(currmonth, curryear);
+        request.setAttribute("hotpro", hotpro);
+        
+        request.setAttribute("month", currmonth);
+        request.setAttribute("year", curryear);
         request.getRequestDispatcher("admin.jsp").forward(request, response);
     } 
 
@@ -41,7 +75,33 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        DAO d = new DAO();
+        int month = Integer.parseInt(request.getParameter("month")) ;
+        int year = Integer.parseInt(request.getParameter("year")) ;
+        //money
+        List<Integer> money = d.getMoneyByMonth(month, year);
+        request.setAttribute("money", money);
         
+        //cate
+        CategoryDAO cdb = new CategoryDAO();
+        List<Category> cates = cdb.getCategories();
+        request.setAttribute("cates", cates);
+        List<Integer> cate = d.getCateByMonth(month, year);
+        request.setAttribute("cate", cate);
+        
+        //top 5 user
+        UserDAO udb = new UserDAO();
+        List<UserDTO> hotusers = udb.getActiveUser(month, year);
+        request.setAttribute("hotusers", hotusers);
+        
+        //top 5 product
+        ProductDAO pdb = new ProductDAO();
+        List<ProductDTO> hotpro = pdb.getHotProductByMonth(month, year);
+        request.setAttribute("hotpro", hotpro);
+        
+        request.setAttribute("month", month);
+        request.setAttribute("year", year);
+        request.getRequestDispatcher("admin.jsp").forward(request, response);
     }
 
     /** 

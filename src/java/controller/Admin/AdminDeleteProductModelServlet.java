@@ -33,13 +33,10 @@ public class AdminDeleteProductModelServlet extends HttpServlet {
     throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         ProductModelDAO pmdb = new ProductModelDAO();
-        try {
-            pmdb.deleteProductModel(id);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        ProductModel pm = pmdb.getById(request.getParameter("id"));
-        response.sendRedirect("admin-edit-product?id="+pm.getId());
+        String pid = request.getParameter("id");
+        ProductModel pm = pmdb.getById(pid);
+        pmdb.deleteProductModel(id);
+        response.sendRedirect("admin-edit-product?id="+pm.getProductId());
     } 
 
     /** 

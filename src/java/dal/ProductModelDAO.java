@@ -7,11 +7,6 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import model.ProductModel;
 
@@ -99,6 +94,11 @@ public class ProductModelDAO extends DBContext {
     }
       
       
-    
+    public static void main(String[] args){
+        ProductModelDAO pmdb = new ProductModelDAO();
+        String pid="142";
+        ProductModel pm = pmdb.getById(pid);
+        System.out.println(pm);
+    }
     
 }

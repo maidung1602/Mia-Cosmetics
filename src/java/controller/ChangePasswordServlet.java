@@ -12,7 +12,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.User;
+import ulti.MD5Hash;
 
 /**
  *
@@ -52,12 +56,13 @@ public class ChangePasswordServlet extends HttpServlet {
             HttpSession session=request.getSession();
             User a= (User) session.getAttribute("account");
             UserDAO udb = new UserDAO();
-            if (curr.equals(a.getPassword()) && newpass.equals(renew)){
-                udb.updatePass(id, newpass);
+            if (MD5Hash.hash(curr).equalsIgnoreCase(a.getPassword()) && newpass.equals(renew)){
+                
+                udb.updatePass(id, MD5Hash.hash(newpass));
                 a.setPassword(newpass);
                 request.setAttribute("ms", "Cập nhật mật khẩu thành công");
                 request.getRequestDispatcher("changepassword.jsp").forward(request, response);
-            } else if (!curr.equals(a.getPassword())){
+            } else if (!MD5Hash.hash(curr).equalsIgnoreCase(a.getPassword())){
                 request.setAttribute("ms", "Nhập sai mật khẩu hiện tại");
                 request.getRequestDispatcher("changepassword.jsp").forward(request, response);
             } else if (!newpass.equals(renew)){
@@ -65,6 +70,8 @@ public class ChangePasswordServlet extends HttpServlet {
                 request.getRequestDispatcher("changepassword.jsp").forward(request, response);
             } 
         } catch (NumberFormatException e) {
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(ChangePasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
       
     }

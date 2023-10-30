@@ -5,6 +5,8 @@
 package model;
 
 import dal.DAO;
+import dal.DAO;
+import dal.DBContext;
 import dal.DBContext;
 import dal.ProductDAO;
 import java.sql.PreparedStatement;

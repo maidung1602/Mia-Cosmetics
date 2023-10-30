@@ -21,7 +21,7 @@
                     <h3 style="text-align: center; padding-bottom: 40px">Có ${num} sản phẩm</h3>
                 </c:if>
                 <div class="features_items"><!--features_items-->
-                    <c:forEach begin="0" end="${productsList.size() - 1}" var="i">
+                    <c:forEach begin="0" end="${productsList.size()-1}" var="i">
                         <c:forEach items="${productsList.get(i)}" var="s">
                             <div class="col-sm-3 shadow page${i}">
                                 <div class="product-image-wrapper" onclick="window.location.href = 'detail?id=${s.id}'">

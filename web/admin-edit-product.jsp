@@ -173,7 +173,7 @@
         <script>
             function doDelete(id) {
                 if(confirm('Co that su muon xoa khong?')){
-                    window.location.href='admin-delete-product?id='+id;
+                    window.location.href='admin-delete-productmodel?id='+id;
                 }
             }
         </script>

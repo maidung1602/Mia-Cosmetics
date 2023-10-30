@@ -34,7 +34,6 @@ public class OrdersServlet extends HttpServlet {
     throws ServletException, IOException {
         HttpSession session=request.getSession();
         User a = (User) session.getAttribute("account");
-        
         OrderDAO odb = new OrderDAO();
         List<Order> orders = odb.getOrdersByUserId(a.getId());
         request.setAttribute("orders", orders);

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Product;
+import model.ProductDTO;
 
 /**
  *
@@ -276,6 +277,28 @@ public class ProductDAO extends DBContext {
             ps.executeUpdate();
         } catch (SQLException e) {
         }
+    }
+    
+    public List<ProductDTO> getHotProductByMonth(int month, int year) {
+        List<ProductDTO> list = new ArrayList<>();
+        String sql = "select top 5 p.thumbnail, p.name, SUM(od.quantity)\n" +
+            "from  [Order] o join OrderDetail od on o.id = od.order_id \n" +
+            "join ProductModel pm on od.product_model_id = pm.id join Product p on pm.product_id = p.id\n" +
+            "where YEAR(order_date) = ? and MONTH(order_date) = ?\n" +
+            "group by p.thumbnail, p.name\n" +
+            "order by SUM(od.quantity) desc";
+        DAO d = new DAO();
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, year);
+            ps.setInt(2, month);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new ProductDTO(rs.getString(1),rs.getString(2),rs.getInt(3)));
+            }
+        } catch (SQLException e) {
+        }
+        return list;
     }
     
     public List<Product> getListByPage(List<Product> list, int start,int end){

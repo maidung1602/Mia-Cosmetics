@@ -15,10 +15,11 @@
                     </form>
                 </div>
                 <div class="col-sm-3 head-control">
+                    <c:set var="cookie" value="${pageContext.request.cookies}" />
                     <div class="pull-right">
                         <ul class="nav navbar-nav">
                             <!--<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>-->
-                            <li class="head-menu"><a href="cart"><i class="fa fa-shopping-cart"></i></a></li>
+                            <li class="head-menu"><a href="cart"><i class="fa fa-shopping-cart"></i><span class="cart-size">${cookie.csize.value}</span></a></li>
                             <li class="head-menu">
                                 <c:if test="${sessionScope.account==null}">
                                     <a href="login"><i class="fa fa-user"></i> </a>
@@ -26,7 +27,7 @@
                                 <c:if test="${sessionScope.account!=null}">
                                     <!--avatar-->
                                     <c:if test="${sessionScope.account.avatar!=null}">
-                                        <a href="" style="padding-top: 10px">
+                                        <a href="home" style="padding-top: 10px">
                                             <img src="${account.avatar}" width="32px" style="border-radius: 60px;"  alt="alt"/>
                                         </a>
                                     </c:if>

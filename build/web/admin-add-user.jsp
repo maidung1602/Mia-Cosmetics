@@ -42,7 +42,7 @@
                 </nav>
             </div>
 
-            <form action="add-user" method="post">
+            <form action="admin-add-user" method="post">
                 <h2 style="font-weight: bold; padding-bottom: 10px;">Thêm tài khoản mới</h2>
                 <input required name="name" type="text" placeholder="Full Name" value="${name}"/>
                 <input required name="username" type="text" placeholder="Username" value="${username}"/>

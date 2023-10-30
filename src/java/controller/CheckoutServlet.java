@@ -9,7 +9,6 @@ import dal.OrderDAO;
 import dal.OrderDetailDAO;
 import dal.ProductModelDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
@@ -17,9 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.Arrays;
-import java.util.List;
 import model.Order;
-import model.OrderDetail;
 import model.ProductModel;
 import model.User;
 
@@ -90,6 +87,11 @@ public class CheckoutServlet extends HttpServlet {
                 .findFirst().orElse(new Cookie("cart", ""));
         cart.setMaxAge(0);
         response.addCookie(cart);
+        Cookie csize = Arrays.stream(request.getCookies())
+                .filter(c -> c.getName().equals("csize"))
+                .findFirst().orElse(new Cookie("csize", "0"));
+        csize.setValue("0");
+        response.addCookie(csize);
         request.getRequestDispatcher("thankyou.jsp").forward(request, response);
     }
 

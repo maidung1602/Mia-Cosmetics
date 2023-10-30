@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.User;
+import model.UserDTO;
 
 /**
  *
@@ -166,11 +167,36 @@ public class UserDAO extends DBContext {
         }
     }
     
-    
-    public static void main(String[] args) {
-//        UserDAO d = new  UserDAO();
-//        d.enable("1");
+    public List<UserDTO> getActiveUser(int month, int year) {
+        List<UserDTO> list = new ArrayList<>();
+        String sql = "select top 5 u.avatar, u.name, SUM(total)\n" +
+            "from  [Order] o join [User] u on o.user_id = u.id\n" +
+            "where YEAR(order_date) = ? and MONTH(order_date) = ?\n" +
+            "group by u.avatar, u.name\n" +
+            "order by SUM(total) desc";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, year);
+            ps.setInt(2, month);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new UserDTO(rs.getString(1), rs.getString(2), rs.getInt(3)));
+            }
+        } catch (SQLException e) {
+        }
+        return list;
     }
     
+    
+    public static void main(String[] args){
+        String s1 = "xyz";
+        String s2 = new String(s1);
+        if (s1 == s2)
+        System.out.println("Line 4");
+        if (s1.equals(s2))
+        System.out.println("Line 6");
+
+        
+    }
     
 }

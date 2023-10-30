@@ -111,7 +111,6 @@ public class AdminFilter implements Filter {
         if(a.getIs_admin()!=3){
             res.sendRedirect("home");
         }
-        
         Throwable problem = null;
         try {
             chain.doFilter(request, response);

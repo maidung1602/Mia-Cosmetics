@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/web/cart.jsp</file>
-            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/web/orderprocessingmanage.jsp</file>
-            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/src/java/controller/CheckoutServlet.java</file>
-            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/src/java/controller/AdminDisableUserServlet.java</file>
-            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301_Ass/src/java/dal/OrderDetailDAO.java</file>
+            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301/src/java/controller/LogoutServlet.java</file>
+            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301/src/java/controller/LoginServlet.java</file>
+            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301/web/search.jsp</file>
+            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301/src/java/dal/ProductDAO.java</file>
+            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301/web/component/header.jsp</file>
+            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301/web/login.jsp</file>
+            <file>file:/D:/FPTU_SE/SEM4/PRJ301/PRJ301/src/java/controller/SearchServlet.java</file>
         </group>
     </open-files>
 </project-private>

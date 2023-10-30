@@ -5,11 +5,8 @@
 package controller;
 
 import dal.BrandDAO;
-import dal.CategoryDAO;
-import dal.DAO;
 import dal.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

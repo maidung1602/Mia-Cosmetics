@@ -73,6 +73,21 @@ a#scrollUp i{
 *******Header CSS******
 **************************/
 
+
+.cart-size {
+    margin-top: -8px;
+    margin-left: -8px;
+    min-width: 18px;
+    font-size: 10px;
+    line-height: 18px;
+    border-radius: 50%;
+    position: absolute;
+    text-align: center;
+    background: #f16945;
+    vertical-align: top;
+    display: inline-block;
+    color: #fff !important;
+}
 .header_top {
     background: none repeat scroll 0 0 #F0F0E9;
 }
